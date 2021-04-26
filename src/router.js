@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 const Home = ()=>import('views/Home')
-const Index = ()=>import('components/Index')
+const Orthogonal = ()=>import('components/Orthogonal')
 
 export default new Router({
   mode:"history",
@@ -15,9 +15,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/index',
+      path: '/orthogonal',
       name: 'Index',
-      component: Index
+      component: Orthogonal
     },
   ]
 })
