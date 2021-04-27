@@ -19,12 +19,12 @@
         </el-submenu>
       </el-submenu>
       <el-submenu index="2">
-        <template slot="title"><i class="el-icon-menu"></i>导航二</template>
-        <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="2-1">选项1</el-menu-item>
+        <template slot="title"><i class="el-icon-menu"></i>通用测试技术</template>
+          <el-menu-item-group>
+                      <el-menu-item index="2-1">选项1</el-menu-item>
           <el-menu-item index="2-2">选项2</el-menu-item>
-        </el-menu-item-group>
+          </el-menu-item-group>
+
         <el-menu-item-group title="分组2">
           <el-menu-item index="2-3">选项3</el-menu-item>
         </el-menu-item-group>

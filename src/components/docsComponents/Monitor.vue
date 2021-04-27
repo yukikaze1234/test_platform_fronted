@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-               <mavon-editor v-model="form.desc" :subfield="false" :preview="true"></mavon-editor>
+        <mavon-editor v-model="value" style="min-height:100%;" />
     </div>
 </template>
 
