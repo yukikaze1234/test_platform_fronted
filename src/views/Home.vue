@@ -6,14 +6,16 @@
         <template slot="title"><i class="el-icon-menu"></i>通用测试技术</template>
         <el-menu-item-group>
           <el-menu-item index="/orthogonal">正交用例设计</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
+          <el-menu-item index="1-2">Xmind2Excel</el-menu-item>
         </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
+        <el-menu-item-group >
+          <el-menu-item index="1-3">Redis连通性</el-menu-item>
         </el-menu-item-group>
         <el-submenu index="1-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="1-4-1">选项4-1</el-menu-item>
+          <template slot="title">数据制造中心</template>
+          <el-menu-item index="1-4-1">数据类型1</el-menu-item>
+          <el-menu-item index="1-4-2">数据类型2</el-menu-item>
+          <el-menu-item index="1-4-3">数据类型3</el-menu-item>
         </el-submenu>
       </el-submenu>
       <el-submenu index="2">
@@ -32,10 +34,9 @@
         </el-submenu>
       </el-submenu>
       <el-submenu index="3">
-        <template slot="title"><i class="el-icon-menu"></i>导航三</template>
+        <template slot="title"><i class="el-icon-menu"></i>文档导航</template>
         <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="3-1">选项1</el-menu-item>
+          <el-menu-item index="/monitor">监控教程</el-menu-item>
           <el-menu-item index="3-2">选项2</el-menu-item>
         </el-menu-item-group>
         <el-menu-item-group title="分组2">
@@ -50,7 +51,7 @@
   </el-aside>
 
   <el-container>
-    <el-header style="text-align: right; font-size: 12px">
+    <el-header style="text-align: right; font-size: 16px">
       <el-dropdown>
         <i class="el-icon-setting" style="margin-right: 15px"></i>
         <el-dropdown-menu slot="dropdown">
@@ -59,7 +60,7 @@
           <el-dropdown-item>删除</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <span>王小虎</span>
+      <span>xiaodonghu</span>
     </el-header>
 
     <el-main>
