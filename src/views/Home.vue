@@ -1,7 +1,7 @@
 <template>
 <el-container style="height: 100%; border: 1px solid #eee">
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-    <el-menu router :default-openeds="['1', '3']" >
+    <el-menu router :default-openeds="['1', '3']" background-color="#FFDEAD" >
       <el-submenu index="1" >
         <template slot="title"><i class="el-icon-menu"></i>通用测试技术</template>
         <el-menu-item-group>
@@ -81,16 +81,9 @@
 export default {
   name: 'home',
   methods:{
-    indexClick(){
-      console.log('/,,,');
-      this.$router.push('/index')
-    }
   },
   data() {
       const item = {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
       };
       return {
         tableData: Array(20).fill(item)
