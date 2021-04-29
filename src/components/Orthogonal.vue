@@ -11,9 +11,10 @@
                     placeholder="请输入测试因子"
                     v-model="item.key">
             </el-input>
+
             <el-input
                     size="large"
-                    placeholder="请输入因子的水平，中间用'/'分割"
+                    placeholder="请输入因子的水平，中间的水平请用'/'分割，最后的不需要处理"
                     v-model="item.value">
             </el-input>
             <el-button type="danger" @click="delRow(index)">删除此行</el-button>
@@ -34,10 +35,10 @@
                                             placeholder="测试因子序号"
                                             :value="index2+1">
                                     </el-input>
-                                    <el-input
+                                    <el-input v-for="(value,key) in item2 " :key="key"
                                             size="large"
-                                            placeholder="测试因子序号"
-                                            :value="JSON.stringify(item2).replace(/{|}/g,'')">
+                                            placeholder="正交结果"
+                                            :value='JSON.stringify(key+":"+value).replace(/"/g,"")'>
                                     </el-input>
 
                                 </div>
@@ -59,15 +60,6 @@
                     {key:'打印人',value:'小胡/中胡/大胡'},
                 ],
                 resData:[
-                    // {'纸张规格': 'A1', '打印时间': '上午', '打印人': '小胡'},
-                    // {'纸张规格': 'B1', '打印时间': '中午', '打印人': '小胡'},
-                    // {'纸张规格': 'B2', '打印时间': '下午', '打印人': '小胡'},
-                    // {'纸张规格': 'B2', '打印时间': '中午', '打印人': '中胡'},
-                    // {'纸张规格': 'B1', '打印时间': '上午', '打印人': '中胡'},
-                    // {'纸张规格': 'A1', '打印时间': '下午', '打印人': '中胡'},
-                    // {'纸张规格': 'A1', '打印时间': '中午', '打印人': '大胡'},
-                    // {'纸张规格': 'B1', '打印时间': '下午', '打印人': '大胡'},
-                    // {'纸张规格': 'B2', '打印时间': '上午', '打印人': '大胡'}
                 ]
             }
         },
@@ -97,6 +89,7 @@
                     method:'post',
                     data:this.tableData
                 }).then(res=>{
+
                      this.resData= res.res
                     console.log(this.resData);
                 }).catch(error=>{
