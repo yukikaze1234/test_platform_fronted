@@ -1,109 +1,154 @@
 <template>
     <div>
-           <div class="connect-info">
-            <el-input
-              placeholder="请输入Ip"
-              v-model="this.defaultIp"
-              @input="changeIp($event)"
-              clearable
+        <div class="connect-info">
+            <el-input class="inputItem"
+                      placeholder="请输入Ip"
+                      v-model="inputIp"
+                      clearable
             >
             </el-input>
-
-            <el-input
-              placeholder="请输入端口"
-              v-model="this.defaultPort"
-               @input="changePort($event)"
-              clearable>
+            <el-input class="inputItem"
+                      placeholder="请输入端口"
+                      v-model="inputPort"
+                      clearable>
             </el-input>
-
-
-             <el-select v-model="value" placeholder="请选择">
+            <el-select v-model="value" placeholder="请选择" class="inputItem">
                 <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
+                        v-for="item in options"
+                        :key="item.value"
+                        :value="item.value">
                 </el-option>
             </el-select>
-           </div>
+            <el-input class="inputItem"
+                      placeholder="请输入密码，默认为空"
+                      v-model="inputPssword"
+                      clearable>
+            </el-input>
+            <el-button
+                    plain
+                    @click="testConnect">
+                点我测试连通性
+            </el-button>
+        </div>
 
     </div>
 </template>
 
 <script>
+    import {request} from "../network/request";
+
     export default {
         name: "RedisOption",
-        data(){
-            return{
-                defaultIp:'127.0.0.1',
-                defaultPort:'6379',
-                 options: [{
-                  value: '选项1',
-                  label: 'db0'
+        data() {
+            return {
+                isConnect: false,
+                inputIp: '127.0.0.1',
+                inputPort: '6379',
+                inputPssword: '',
+                options: [{
+                    value: 'db0',
                 }, {
-                  value: '选项2',
-                  label: 'db1'
+                    value: 'db1',
                 }, {
-                  value: '选项3',
-                  label: 'db2'
+                    value: 'db2',
                 }, {
-                  value: '选项4',
-                  label: 'db3'
+                    value: 'db3',
                 }, {
-                  value: '选项5',
-                  label: 'db4'
+                    value: 'db4',
                 },
-                {
-                  value: '选项6',
-                  label: 'db5'
-                },{
-                  value: '选项7',
-                  label: 'db6'
-                },{
-                  value: '选项8',
-                  label: 'db7'
-                },{
-                  value: '选项9',
-                  label: 'db8'
-                },{
-                  value: '选项10',
-                  label: 'db9'
-                },{
-                  value: '选项11',
-                  label: 'db10'
-                },{
-                  value: '选项12',
-                  label: 'db11'
-                },{
-                  value: '选项13',
-                  label: 'db12'
-                },{
-                  value: '选项14',
-                  label: 'db13'
-                },{
-                  value: '选项15',
-                  label: 'db14'
-                },{
-                  value: '选项16',
-                  label: 'db15'
-                },
+                    {
+                        value: 'db5',
+
+                    }, {
+                        value: 'db6',
+
+                    }, {
+                        value: 'db7',
+
+                    }, {
+                        value: 'db8',
+                    }, {
+                        value: 'db9',
+
+                    }, {
+                        value: 'db10',
+                    }, {
+                        value: 'db11',
+
+                    }, {
+                        value: 'db12',
+
+                    }, {
+                        value: 'db13',
+
+                    }, {
+                        value: 'db14',
+
+                    }, {
+                        value: 'db15',
+
+                    },
                 ],
-             value: '选项1'
-      }
+                value: 'db0'
+            }
+        },
+        methods: {
+            open1() {
+                if (this.isConnect === true) {
+                    this.$notify({
+                        title: '成功',
+                        message: '这是一条成功的提示消息',
+                        type: 'success'
+                    });
+                } else {
+                    this.$notify({
+                        title: '警告',
+                        message: '这是一条警告的提示消息',
+                        type: 'warning'
+                    });
+                }
             },
-        methods:{
-            changeIp(e){
-                this.defaultIp = e
-            },
-            changePort(e){
-                this.defaultPort = e
+            testConnect() {
+                return request({
+                    url: 'api/redisOption/',
+                    method: 'post',
+                    data: {
+                        Ip: this.inputIp,
+                        Port: this.inputPort,
+                        password: this.inputPssword,
+                        db: this.value.replace(/[^0-9]/ig, "")
+                    }
+                }).then(res => {
+                    this.isConnect = res['signal']
+                    if (this.isConnect === true) {
+                        this.$notify({
+                            title: '成功',
+                            message: '连接成功',
+                            type: 'success',
+                            duration: 2000
+                        });
+                    } else {
+                        this.$notify({
+                            title: '错误',
+                            message: '连接超时，检查连接信息或者redis配置',
+                            type: 'warning',
+                            duration: 2000
+                        });
+                    }
+                }).catch(error => {
+                    console.log(error);
+                })
             }
         }
     }
 </script>
 
 <style scoped>
-.connect-info{
-    display: flex;
-}
+    .connect-info {
+        display: flex;
+    }
+
+    .inputItem {
+        flex: 1;
+    }
 </style>

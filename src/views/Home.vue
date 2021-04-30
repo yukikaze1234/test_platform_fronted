@@ -7,7 +7,7 @@
                     <el-menu-item-group>
                         <el-menu-item index="/orthogonal">正交用例设计</el-menu-item>
                         <el-menu-item index="1-2">Xmind2Excel</el-menu-item>
-                        <el-menu-item index="/redisOption">Redis连通性</el-menu-item>
+                        <el-menu-item index="/redisOption">Redis连通性 </el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
 

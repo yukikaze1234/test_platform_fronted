@@ -85,7 +85,7 @@
                 }
                 console.log('exexcute');
                 return request({
-                    url:'docs/orthogonal/',
+                    url:'api/orthogonal/',
                     method:'post',
                     data:this.tableData
                 }).then(res=>{
