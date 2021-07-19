@@ -35,10 +35,6 @@
         },
         methods:{
             batchRegister(){
-                console.log(this.value)
-                console.log(this.input1)
-                console.log(this.input2)
-                console.log(this.input3)
                 if(this.value=='' || this.input1=='' || this.input2=='' ||this.input3 ==''){
                     alert('输入框不许为空，请检查')
                     return
@@ -49,7 +45,6 @@
                     var data = []
                     data.push(this.value,this.input1,this.input2,this.input3)
                     let timeout = 1000*(this.input3-this.input2+1)
-                    console.log(data,timeout)
                     return request({
                         url:'api/batchRegister/',
                         method:'post',
@@ -57,10 +52,8 @@
                         timeout:timeout
                     }).then(res=>{
                         alert(res)
-                        console.log(res);
                     }).catch(error =>{
                         alert(error)
-                        console.log('error');
                     })
                 }
             }
