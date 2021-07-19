@@ -5,7 +5,8 @@ Vue.use(Router)
 const Orthogonal = ()=>import('components/Orthogonal')
 const Monitor = ()=>import('components/docsComponents/Monitor')
 const RedisOption = ()=>import('components/redisComponents/RedisOption')
-
+const Transform = ()=>import('components/Transform')
+const BatchRegister =()=> import('components/BatchRegister')
 
 export default new Router({
   mode:"history",
@@ -30,5 +31,16 @@ export default new Router({
       name: 'redisOption',
       component: RedisOption
     },
+    {
+      path: '/transform',
+      name: 'transform',
+      component: Transform
+    },
+    {
+      path: '/batchRegister',
+      name: 'batchRegister',
+      component: BatchRegister
+    },
+
   ]
 })
