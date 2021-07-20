@@ -152,16 +152,28 @@
                     });
                 }
             },
-
             execOpt(){
+                var data = []
+                data.push(this.rvalue,this.inputkey,this.inputvalue,this.othervalue)
                 console.log('test');
                 return request({
-                  url:'',
-                  method:'',
+                  url:'api/redisExecute/',
+                  method:'post',
                   data:{
-
+                       Ip: this.inputIp,
+                        Port: this.inputPort,
+                        password: this.inputPssword,
+                        db: this.value.replace(/[^0-9]/ig, ""),
+                        rvalue:this.rvalue,
+                        inputkey:this.inputkey,
+                        inputvalue:this.inputvalue,
+                        othervalue:this.othervalue,
                   }
-              })
+              }).then(res=>{
+                    console.log(res);
+                }).catch(error=>{
+                    console.log(error);
+                })
             },
             testConnect() {
                 return request({
