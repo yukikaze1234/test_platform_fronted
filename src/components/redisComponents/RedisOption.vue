@@ -14,22 +14,64 @@
             </el-input>
             <el-select v-model="value" placeholder="请选择" class="inputItem">
                 <el-option
-                        v-for="item in options"
+                        v-for="item in dbs"
                         :key="item.value"
                         :value="item.value">
                 </el-option>
             </el-select>
+
             <el-input class="inputItem"
                       placeholder="请输入密码，默认为空"
                       v-model="inputPssword"
                       clearable>
             </el-input>
+
             <el-button
                     plain
                     @click="testConnect">
                 点我测试连通性
             </el-button>
+
         </div>
+
+
+        <div class="redis-option">
+         <el-select v-model="rvalue" placeholder="请选择" class="redisOption">
+                <el-option
+                        v-for="item in Redisoptions"
+                        :value="item.rvalue">
+                </el-option>
+        </el-select>
+
+
+        <el-input class="redisOption"
+                      placeholder="key，默认为空"
+                      v-model="inputkey"
+                      clearable>
+        </el-input>
+
+
+        <el-input class="redisOption"
+                      placeholder="value，默认为空"
+                      v-model="inputvalue"
+                      clearable>
+        </el-input>
+
+        <el-input class="redisOption"
+                      placeholder="请输入其他参数，默认为空"
+                      v-model="othervalue"
+                      clearable>
+        </el-input>
+
+
+        <el-button
+                    plain
+                    @click="execOpt">
+                请点我执行指令
+            </el-button>
+        </div>
+
+
 
     </div>
 </template>
@@ -45,7 +87,10 @@
                 inputIp: '127.0.0.1',
                 inputPort: '6379',
                 inputPssword: '',
-                options: [{
+                inputkey:'',
+                inputvalue:'',
+                othervalue:'',
+                dbs: [{
                     value: 'db0',
                 }, {
                     value: 'db1',
@@ -58,13 +103,10 @@
                 },
                     {
                         value: 'db5',
-
                     }, {
                         value: 'db6',
-
                     }, {
                         value: 'db7',
-
                     }, {
                         value: 'db8',
                     }, {
@@ -74,22 +116,24 @@
                         value: 'db10',
                     }, {
                         value: 'db11',
-
                     }, {
                         value: 'db12',
 
                     }, {
-                        value: 'db13',
-
+                        value: 'db13'
                     }, {
                         value: 'db14',
-
                     }, {
                         value: 'db15',
-
                     },
                 ],
-                value: 'db0'
+                value: 'db0',
+                rvalue:'',
+                    Redisoptions: [{
+                        rvalue: 'set',
+                    }, {
+                        rvalue: 'get',
+                    }],
             }
         },
         methods: {
@@ -107,6 +151,17 @@
                         type: 'warning'
                     });
                 }
+            },
+
+            execOpt(){
+                console.log('test');
+                return request({
+                  url:'',
+                  method:'',
+                  data:{
+
+                  }
+              })
             },
             testConnect() {
                 return request({
@@ -147,8 +202,13 @@
     .connect-info {
         display: flex;
     }
-
+    .redis-option{
+         display: flex;
+    }
     .inputItem {
+        flex: 1;
+    }
+     .redisOption {
         flex: 1;
     }
 </style>
