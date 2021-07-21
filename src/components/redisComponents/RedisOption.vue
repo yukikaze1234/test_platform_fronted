@@ -77,7 +77,7 @@
 </template>
 
 <script>
-    import {request} from "../network/request";
+    import {request} from "network/request";
 
     export default {
         name: "RedisOption",
@@ -133,7 +133,11 @@
                         rvalue: 'set',
                     }, {
                         rvalue: 'get',
-                    }],
+                    },
+                    {
+                        rvalue: 'del',
+                    }
+                    ],
             }
         },
         methods: {
@@ -155,7 +159,6 @@
             execOpt(){
                 var data = []
                 data.push(this.rvalue,this.inputkey,this.inputvalue,this.othervalue)
-                console.log('test');
                 return request({
                   url:'api/redisExecute/',
                   method:'post',
@@ -171,8 +174,9 @@
                   }
               }).then(res=>{
                     console.log(res);
+                    alert(JSON.stringify(res))
                 }).catch(error=>{
-                    console.log(error);
+                    alert(JSON.stringify(error))
                 })
             },
             testConnect() {
@@ -209,7 +213,6 @@
         }
     }
 </script>
-
 <style scoped>
     .connect-info {
         display: flex;
